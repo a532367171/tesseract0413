@@ -22,6 +22,8 @@ namespace tesseract0413
 
             srcImage = Mat.ImDecode(bb);
 
+
+
             List<Bitmap> listBitmaps=new List<Bitmap>();
 
             //List<Rect> list01 = new List<Rect>();
