@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -18,7 +19,7 @@ namespace tesseract0413
             Mat srcImage=new Mat();
             //Mat srcImage2 = new Mat();
 
-            var bb = BitmapToBytes(srcImage1);
+            var bb = Bitmap2Byte(srcImage1);
 
             srcImage = Mat.ImDecode(bb);
 
@@ -376,6 +377,29 @@ namespace tesseract0413
             finally
             {
                 ms.Close();
+            }
+        }
+
+        //public static byte[] ToByte(Image imageData)
+        //{
+        //    MemoryStream Ms = new MemoryStream();
+        //    image.Save(Ms, System.Drawing.Imaging.ImageFormat.bmp);//把图像数据序列化到内存
+        //    byte[] imgByte = new byte[Ms.Length];
+        //    Ms.Position = 0;
+        //    Ms.Read(imgByte, 0, Convert.ToInt32(Ms.Length));//反序列，存放在字节数组里
+        //    Ms.Close();
+        //    return imgByte;//这里我们就得到了图像的字节数组了
+
+        //}
+        public static byte[] Bitmap2Byte(Bitmap bitmap)
+        {
+            using (MemoryStream stream = new MemoryStream())
+            {
+                bitmap.Save(stream, ImageFormat.Jpeg);
+                byte[] data = new byte[stream.Length];
+                stream.Seek(0, SeekOrigin.Begin);
+                stream.Read(data, 0, Convert.ToInt32(stream.Length));
+                return data;
             }
         }
 

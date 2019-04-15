@@ -12,6 +12,9 @@ namespace tesseract0413
     {
 
         提取表格类 _提取表格类;
+
+        List<List<Bitmap>> xList1 = new List<List<Bitmap>>();
+
         public Form1()
         {
             InitializeComponent();
@@ -42,13 +45,19 @@ namespace tesseract0413
 
         private void button2_Click(object sender, EventArgs e)
         {
-            List<List<Bitmap>> xList1 = new List<List<Bitmap>>();
+
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 //ConvertPDF2Image(openFileDialog1.FileName, "D:\\", "A", 1, 5, System.Drawing.Imaging.ImageFormat.Jpeg,Definition.Five);
                 xList1= ConvertPDF2ListImage(openFileDialog1.FileName, "D:\\", "A", 1, 5, System.Drawing.Imaging.ImageFormat.Jpeg, Definition.Five);
             }
+
+
         }
+
+
+
+
 
 
 
